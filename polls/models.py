@@ -29,3 +29,21 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class AboutPage(models.Model):
+    title = models.CharField(max_length=200, default="About Us")
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+class Event(models.Model):
+    name = models.CharField(max_length=200)
+    date = models.DateField()
+    description = models.TextField()
+
+    class Meta:
+        ordering = ['date']
+
+    def __str__(self):
+        return f"{self.name} on {self.date}"

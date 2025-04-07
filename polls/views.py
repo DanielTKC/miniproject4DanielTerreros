@@ -3,8 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
+from django.views.generic import ListView
 
-from .models import Question, Choice
+from .models import Question, Choice, AboutPage, Event
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
@@ -69,3 +70,19 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, "polls/profile.html")
+
+
+class AboutView(DetailView):
+    model = AboutPage
+    template_name = "polls/about.html"
+    context_object_name = "about"
+
+    def get_object(self, queryset=None):
+        return AboutPage.objects.first()
+
+
+class UpcomingEventsView(ListView):
+    model = Event
+    template_name = "polls/events.html"
+    context_object_name = "events"
+    queryset = Event.objects.order_by("date")

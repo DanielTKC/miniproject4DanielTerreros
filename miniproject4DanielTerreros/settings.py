@@ -82,8 +82,8 @@ DATABASES = {
     }
 }
 
-LOGIN_REDIRECT_URL = 'polls/profile/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/polls/profile/'
+LOGOUT_REDIRECT_URL = '/polls/'
 LOGIN_URL = '/login/'
 
 
